@@ -1,0 +1,29 @@
+name: GM-Quantum-Advantage
+
+on:
+  schedule:
+    - cron: "0 19 * * 0,1,2,3"
+  workflow_dispatch:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Check out theis repo
+      - uses: actions/checkout@v2
+      # Start a Slack workflow using a webhook trigger
+      # https://github.com/slackapi/slack-github-action
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+          architecture: "x64"
+      - name: Get Python version
+        run: python -V
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run Quantum Computer
+        run: python gm-quantum-advantage.py
+        env:
+          REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}

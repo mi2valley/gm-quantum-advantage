@@ -1,0 +1,3 @@
+xanadu-cloud-client
+numpy
+strawberryfields
