@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
       - name: Save XCC config
-        run: xcc config
+        run: xcc config set REFRESH_TOKEN
         env:
           REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
       - name: Demonstrate Quantum Advantage
