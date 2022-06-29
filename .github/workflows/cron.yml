@@ -23,7 +23,9 @@ jobs:
         run: python -V
       - name: Install dependencies
         run: pip install -r requirements.txt
-      - name: Run Quantum Computer
+      - name: Save XCC config
+        run: xcc config set REFRESH_TOKEN REFRESH_TOKEN ${{ secrets.REFRESH_TOKEN }}
+      - name: Demonstrate Quantum Advantage
         run: python gm-quantum-advantage.py
         env:
           REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
