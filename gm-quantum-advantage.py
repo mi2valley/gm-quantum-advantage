@@ -6,7 +6,7 @@ from strawberryfields.tdm import borealis_gbs, get_mode_indices
 import numpy as np
 
 REFRESH_TOKEN = os.getenv("REFRESH_TOKEN")
-settings = xcc.Settings(str(REFRESH_TOKEN))
+settings = xcc.Settings(REFRESH_TOKEN)
 settings.save()
 
 eng = sf.RemoteEngine("borealis")
