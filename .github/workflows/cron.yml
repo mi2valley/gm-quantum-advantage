@@ -25,7 +25,7 @@ jobs:
         run: pip install -r requirements.txt
       - name: Save XCC config
         run: |
-          xcc config
+          xcc config set REFRESH_TOKEN $REFRESH_TOKEN
           python gm-quantum-advantage.py
         env:
           REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
