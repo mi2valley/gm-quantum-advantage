@@ -1,3 +1,3 @@
-xanadu-cloud-client=0.2.1
-numpy=1.21.5 
-strawberryfields=0.23.0
+xanadu-cloud-client==0.2.1
+numpy==1.21.5 
+strawberryfields==0.23.0
