@@ -1,5 +1,3 @@
-import xcc
-import os
 import strawberryfields as sf
 from strawberryfields.ops import *
 from strawberryfields.tdm import borealis_gbs, get_mode_indices
