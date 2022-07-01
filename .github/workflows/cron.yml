@@ -26,7 +26,6 @@ jobs:
       - name: Demonstrate Quantum Advantage
         run: |
           xcc config set REFRESH_TOKEN $REFRESH_TOKEN
-          xcc device get borealis --availability
           python gm-quantum-advantage.py
         env:
           REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
