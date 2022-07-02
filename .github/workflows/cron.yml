@@ -10,10 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # Check out theis repo
       - uses: actions/checkout@v2
-      # Start a Slack workflow using a webhook trigger
-      # https://github.com/slackapi/slack-github-action
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
