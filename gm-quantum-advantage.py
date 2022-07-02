@@ -2,8 +2,13 @@ import strawberryfields as sf
 from strawberryfields.ops import *
 from strawberryfields.tdm import borealis_gbs, get_mode_indices
 import numpy as np
+import datetime as dt
 
-eng = sf.RemoteEngine("borealis")
+if(date.strftime('%a')== 'Thu' or 'Fri' or 'Sat'):
+    eng = sf.RemoteEngine("simulon_gaussian")
+else:
+    eng = sf.RemoteEngine("borealis")
+
 device = eng.device
 
 gate_args_list = borealis_gbs(device, modes=216, squeezing="high")
