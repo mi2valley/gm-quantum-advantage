@@ -4,7 +4,7 @@ from strawberryfields.tdm import borealis_gbs, get_mode_indices
 import numpy as np
 import datetime as dt
 
-if(date.strftime('%a')== 'Thu' or 'Fri' or 'Sat'):
+if(dt.date.today().weekday() == 4 or 5 or 6):
     eng = sf.RemoteEngine("simulon_gaussian")
 else:
     eng = sf.RemoteEngine("borealis")
