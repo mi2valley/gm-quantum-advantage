@@ -1,2 +1,2 @@
-numpy==1.21.5 
+numpy==1.21.5
 strawberryfields==0.23.0
