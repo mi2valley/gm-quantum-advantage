@@ -29,7 +29,7 @@ def gbs_tdm():
 
     return prog
 
-if(borealis.status == "online"):
+if(device.status == "online"):
     prog = gbs_tdm()
 
     shots = 10_000
