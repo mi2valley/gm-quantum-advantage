@@ -20,6 +20,7 @@ if(dt.date.today().weekday() == 4 or 5 or 6):
 
     eng_sim = sf.Engine(backend="gaussian")
     results_sim = eng_sim.run(prog, **run_options, compile_options=compile_options)
+    print(results_sim.state.cov())
 
 
 
