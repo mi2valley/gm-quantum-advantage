@@ -6,11 +6,11 @@ import numpy as np
 import datetime as dt
 
 connection = xcc.Connection.load()
-device = xcc.Device(target="borealis", connection=connection)
+borealis = xcc.Device(target="borealis", connection=connection)
+eng = sf.RemoteEngine("borealis")
+device = eng.device
 
 def gbs_tdm():
-    eng = sf.RemoteEngine("borealis")
-    device = eng.device
 
     gate_args_list = borealis_gbs(device, modes=216, squeezing="high")
     delays = [1, 6, 36]
@@ -29,7 +29,7 @@ def gbs_tdm():
 
     return prog
 
-if(device.status == "online"):
+if(borealis.status == "online"):
     prog = gbs_tdm()
 
     shots = 10_000
