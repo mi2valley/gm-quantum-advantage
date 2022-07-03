@@ -1,16 +1,22 @@
 import strawberryfields as sf
 from strawberryfields.ops import *
 from strawberryfields.tdm import borealis_gbs, get_mode_indices
+import xcc
 import numpy as np
 import datetime as dt
 
-if(dt.date.today().weekday() == 4 or 5 or 6):
+connection = xcc.Connection.load()
+borealis = xcc.Device(target="borealis", connection=connection)
+
+if(borealis.status == "online"):
     prog = gbs_tdm()
 
-    compile_options = {
-        "device": device,
-        "realistic_loss": True,
-    }
+    shots = 10_000
+    results = eng.run(prog, shots=shots, crop=True)
+    print(results.samples)
+
+else:
+    prog = gbs_tdm()
 
     run_options = {
         "shots": None,
@@ -18,18 +24,14 @@ if(dt.date.today().weekday() == 4 or 5 or 6):
         "space_unroll": True,
     }
 
+    compile_options = {
+        "device": device,
+        "realistic_loss": True,
+    }
+
     eng_sim = sf.Engine(backend="gaussian")
     results_sim = eng_sim.run(prog, **run_options, compile_options=compile_options)
     print(results_sim.state.cov())
-
-
-
-else:
-    prog = gbs_tdm()
-
-    shots = 10_000
-    results = eng.run(prog, shots=shots, crop=True)
-    print(results.samples)
 
 def gbs_tdm():
     eng = sf.RemoteEngine("borealis")
