@@ -8,6 +8,27 @@ import datetime as dt
 connection = xcc.Connection.load()
 borealis = xcc.Device(target="borealis", connection=connection)
 
+def gbs_tdm():
+    eng = sf.RemoteEngine("borealis")
+    device = eng.device
+
+    gate_args_list = borealis_gbs(device, modes=216, squeezing="high")
+    delays = [1, 6, 36]
+    n, N = get_mode_indices(delays)
+
+    from strawberryfields.ops import Sgate, Rgate, BSgate, MeasureFock
+
+    prog = sf.TDMProgram(N)
+
+    with prog.context(*gate_args_list) as (p, q):
+        Sgate(p[0]) | q[n[0]]
+        for i in range(len(delays)):
+            Rgate(p[2 * i + 1]) | q[n[i]]
+            BSgate(p[2 * i + 2], np.pi / 2) | (q[n[i + 1]], q[n[i]])
+        MeasureFock() | q[0]
+
+    return prog
+
 if(borealis.status == "online"):
     prog = gbs_tdm()
 
@@ -32,24 +53,4 @@ else:
     eng_sim = sf.Engine(backend="gaussian")
     results_sim = eng_sim.run(prog, **run_options, compile_options=compile_options)
     print(results_sim.state.cov())
-
-def gbs_tdm():
-    eng = sf.RemoteEngine("borealis")
-    device = eng.device
-
-    gate_args_list = borealis_gbs(device, modes=216, squeezing="high")
-    delays = [1, 6, 36]
-    n, N = get_mode_indices(delays)
-
-    from strawberryfields.ops import Sgate, Rgate, BSgate, MeasureFock
-
-    prog = sf.TDMProgram(N)
-
-    with prog.context(*gate_args_list) as (p, q):
-        Sgate(p[0]) | q[n[0]]
-        for i in range(len(delays)):
-            Rgate(p[2 * i + 1]) | q[n[i]]
-            BSgate(p[2 * i + 2], np.pi / 2) | (q[n[i + 1]], q[n[i]])
-        MeasureFock() | q[0]
-
-    return prog
+    

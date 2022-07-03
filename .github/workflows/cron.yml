@@ -2,7 +2,7 @@ name: GM-Quantum-Advantage
 
 on:
   schedule:
-    - cron: "0 19 * * 0,1,2,3"
+    - cron: "0 19 * * *"
   workflow_dispatch:
     branches: [main]
 
