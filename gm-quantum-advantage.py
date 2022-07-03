@@ -6,7 +6,7 @@ import numpy as np
 import datetime as dt
 
 connection = xcc.Connection.load()
-borealis = xcc.Device(target="borealis", connection=connection)
+device = xcc.Device(target="borealis", connection=connection)
 
 def gbs_tdm():
     eng = sf.RemoteEngine("borealis")
@@ -53,4 +53,3 @@ else:
     eng_sim = sf.Engine(backend="gaussian")
     results_sim = eng_sim.run(prog, **run_options, compile_options=compile_options)
     print(results_sim.state.cov())
-    
