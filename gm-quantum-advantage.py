@@ -3,15 +3,14 @@ from strawberryfields.ops import *
 from strawberryfields.tdm import borealis_gbs, get_mode_indices
 import xcc
 import numpy as np
-import datetime as dt
 
 connection = xcc.Connection.load()
 borealis = xcc.Device(target="borealis", connection=connection)
 eng = sf.RemoteEngine("borealis")
 device = eng.device
+print(borealis.status)
 
 def gbs_tdm():
-
     gate_args_list = borealis_gbs(device, modes=216, squeezing="high")
     delays = [1, 6, 36]
     n, N = get_mode_indices(delays)

@@ -8,4 +8,4 @@
 
 3. Register to [Xanadu Cloud](https://cloud.xanadu.ai/) and get API Key
 
-4. Go to Settings→Secrets→Actions→New repository secret and enter the API Key you just obtained with the name REFRESH_TOKEN
+4. Go to Settings → Secrets → Actions → New repository secret and enter the API Key you just obtained with the name REFRESH_TOKEN
