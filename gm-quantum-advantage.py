@@ -33,6 +33,8 @@ if(borealis.status == "online"):
 
     shots = 10_000
     results = eng.run(prog, shots=shots, crop=True)
+    print(np.cov(samples[:, 0, :].T))
+    print(results.state.cov())
     print(results.samples)
 
 else:
@@ -51,5 +53,4 @@ else:
 
     eng_sim = sf.Engine(backend="gaussian")
     results_sim = eng_sim.run(prog, **run_options, compile_options=compile_options)
-    print(results_sim.samples)
     print(results_sim.state.cov())
