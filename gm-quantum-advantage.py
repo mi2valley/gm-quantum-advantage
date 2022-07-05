@@ -51,4 +51,5 @@ else:
 
     eng_sim = sf.Engine(backend="gaussian")
     results_sim = eng_sim.run(prog, **run_options, compile_options=compile_options)
+    print(results_sim.samples)
     print(results_sim.state.cov())
