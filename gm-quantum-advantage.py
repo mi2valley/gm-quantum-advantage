@@ -34,8 +34,8 @@ if(borealis.status == "online"):
     shots = 10_000
     results = eng.run(prog, shots=shots, crop=True)
     print(np.cov(results.samples[:, 0, :].T))
-    print(results.state.cov())
     print(results.samples)
+    print(results.state.cov())
 
 else:
     prog = gbs_tdm()
