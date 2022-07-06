@@ -33,7 +33,7 @@ if(borealis.status == "online"):
 
     shots = 10_000
     results = eng.run(prog, shots=shots, crop=True)
-    print(np.cov(samples[:, 0, :].T))
+    print(np.cov(results.samples[:, 0, :].T))
     print(results.state.cov())
     print(results.samples)
 
