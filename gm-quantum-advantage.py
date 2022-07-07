@@ -8,7 +8,7 @@ connection = xcc.Connection.load()
 borealis = xcc.Device(target="borealis", connection=connection)
 eng = sf.RemoteEngine("borealis")
 device = eng.device
-print(borealis.status)
+print(f'Borealis: {borealis.status}')
 
 def gbs_tdm():
     gate_args_list = borealis_gbs(device, modes=216, squeezing="high")
