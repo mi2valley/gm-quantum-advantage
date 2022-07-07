@@ -33,9 +33,12 @@ if(borealis.status == "online"):
 
     shots = 10_000
     results = eng.run(prog, shots=shots, crop=True)
-    print(np.cov(results.samples[:, 0, :].T))
-    print(results.samples)
-    print(results.state.cov())
+
+    # results
+    print(f'samples \n {results.samples}')
+
+    # covariance matrix
+    print(f'covariance matrix \n {np.cov(results.samples[:, 0, :].T)}')
 
 else:
     prog = gbs_tdm()
@@ -53,4 +56,6 @@ else:
 
     eng_sim = sf.Engine(backend="gaussian")
     results_sim = eng_sim.run(prog, **run_options, compile_options=compile_options)
-    print(results_sim.state.cov())
+
+    # covariance matrix
+    print(f'covariance matrix \n {results_sim.state.cov()}')
