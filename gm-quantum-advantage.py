@@ -10,6 +10,8 @@ eng = sf.RemoteEngine("borealis")
 device = eng.device
 print(f'Borealis: {borealis.status}')
 
+# Write the program you want to run in Borealis below
+
 def gbs_tdm():
     gate_args_list = borealis_gbs(device, modes=216, squeezing="high")
     delays = [1, 6, 36]
@@ -34,10 +36,8 @@ if(borealis.status == "online"):
     shots = 10_000
     results = eng.run(prog, shots=shots, crop=True)
 
-    # results
     print(f'samples \n {results.samples}')
 
-    # covariance matrix
     print(f'covariance matrix \n {np.cov(results.samples[:, 0, :].T)}')
 
 else:
@@ -57,5 +57,4 @@ else:
     eng_sim = sf.Engine(backend="gaussian")
     results_sim = eng_sim.run(prog, **run_options, compile_options=compile_options)
 
-    # covariance matrix
     print(f'covariance matrix \n {results_sim.state.cov()}')
