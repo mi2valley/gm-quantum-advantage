@@ -14,6 +14,6 @@
 
 ![settings](docs/images/settings.png)
 
-5. The program will run automatically at 19:00 (UTC). You can see the execution result in Actions.
+5. The program will run automatically at 19:00 (UTC). Go to Actions → Select the workflow for which you want to see results → build → Demonstrate Quantum Advantage and you can see the execution result in Actions.
 
 6. By default, the quantum advantage demonstration is executed, but you can edit gm-quantum-advantage.py as needed and write the program you want to run.
